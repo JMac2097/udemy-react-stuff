@@ -4,8 +4,13 @@ What it says on the tin
 
 Commands for Yarn/Babel
 
-yarn init
+yarn install
 
+install Babel globally:
+npm install -g babel-cli@16.24.1
+
+
+// Terminal command to watch babel compile
 babel src/app.js --out-file=public/scripts/app.js --presets=env,react --watch
 
 
