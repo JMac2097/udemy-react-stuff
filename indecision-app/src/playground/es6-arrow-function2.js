@@ -1,5 +1,3 @@
-"use strict";
-
 // arguments object -- no longer bound
 
 // const add = (a,b) => {
@@ -16,7 +14,7 @@
 //     name: 'Derek',
 //     cities: ['NY', 'Dublin', 'Philedelphia'],
 //     printPlacesLived() {
-
+    
 //         return this.cities.map((city) => `${this.name} has lived in ${city}`);    
 //     }
 // };
@@ -26,19 +24,24 @@
 
 // challenge
 
-var multiplier = {
+const multiplier = {
     //numbers array 
-    numberArray: [1, 2, 3, 4, 5],
+    numberArray : [1, 2, 3, 4, 5],
     // multiply by -- single number
     multiplyBy: 2,
     // multiply -- return a new array where the numbers have been multiplied -- map
-    multiply: function multiply() {
-        var _this = this;
+    multiply() {
 
-        return this.numberArray.map(function (multNumber) {
-            return _this.multiplyBy * multNumber;
-        });
+        return this.numberArray.map((multNumber) => this.multiplyBy * multNumber);
     }
 };
 
-console.log(multiplier.multiply());
+
+
+
+
+
+
+
+
+console.log(multiplier.multiply())
