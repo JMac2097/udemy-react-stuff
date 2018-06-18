@@ -6,47 +6,48 @@ const app = {
     options: ['One', 'Two']
 };
 
-const template = (
-    <div>
-        <h1>{app.title}</h1>
-        <p>{app.subtitle}</p>
-        {(app.subtitle) && <p> Subtitle: {app.subtitle}</p>}
-        <p>{app.options.length > 0 ? 'Here are your options' : 'No options available'}</p>
-        <ul>
-            <li>List item 1</li>
-            <li>List item 2</li>
-            <li>List item 3</li>
-        </ul>
-    </div>
-);
+const onFormSubmit = (e) => {
+    e.preventDefault();
 
-let count = 0;
-const addOne = () => {
-    count++;
-    renderCounterApp();
+    const option = e.target.elements.option.value;
+
+    if(option) {
+        app.options.push(option);
+        e.target.elements.option.value = '';
+    }
+    renderApp();
 };
-const minusOne = () => {
-    count--;
-    renderCounterApp();
-};
-const reset = () => {
-    count = 0;
-    renderCounterApp();
-};
+
+
+// create removeAll button above list
+// Onclick wipe the array and rerender
 
 const appRoot = document.getElementById('app');
 
-const renderCounterApp = () => {
-    const templateTwo = (
+const renderApp = () => {
+    const template = (
         <div>
-        <h1>Count : {count}</h1>
-        <button onClick={addOne}>+1</button>
-        <button onClick={minusOne}>-1</button>
-        <button onClick={reset}>reset</button>
+            <h1>{app.title}</h1>
+            {app.subtitle && <p>{app.subtitle}</p>}
+            <p>{app.options.length}</p>
+            <p>{app.options.length > 0 ? 'Here are your options' : 'No options available'}</p>
+            <ul>
+                <li>List item 1</li>
+                <li>List item 2</li>
+            </ul>
+            <form onSubmit={onFormSubmit}>
+                <input type="text" name="option"/>
+                <button>Add Option</button>
+            </form>
         </div>
     );
-    
-    ReactDOM.render(templateTwo, appRoot);
+
+    ReactDOM.render(template, appRoot);
 };
 
-renderCounterApp();
+renderApp();
+
+
+// create a new render function that renders the new jsx
+// call it right away
+// call it after options array added in
