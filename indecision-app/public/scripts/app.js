@@ -1,44 +1,102 @@
-"use strict";
+'use strict';
 
-// arguments object -- no longer bound
+console.log('app.js is running');
 
-// const add = (a,b) => {
-//     console.log(arguments);   // Does not work
-//     return a + b;
-// };
-
-// console.log(add(55, 1));
-
-
-// 'this' keyword -- no longer bound
-
-// const user = {
-//     name: 'Derek',
-//     cities: ['NY', 'Dublin', 'Philedelphia'],
-//     printPlacesLived() {
-
-//         return this.cities.map((city) => `${this.name} has lived in ${city}`);    
-//     }
-// };
-
-// console.log(user.printPlacesLived());
-
-
-// challenge
-
-var multiplier = {
-    //numbers array 
-    numberArray: [1, 2, 3, 4, 5],
-    // multiply by -- single number
-    multiplyBy: 2,
-    // multiply -- return a new array where the numbers have been multiplied -- map
-    multiply: function multiply() {
-        var _this = this;
-
-        return this.numberArray.map(function (multNumber) {
-            return _this.multiplyBy * multNumber;
-        });
-    }
+var app = {
+    title: 'Indecision App',
+    subtitle: 'Put your life in the hands of a computer',
+    options: ['One', 'Two']
 };
 
-console.log(multiplier.multiply());
+var template = React.createElement(
+    'div',
+    null,
+    React.createElement(
+        'h1',
+        null,
+        app.title
+    ),
+    React.createElement(
+        'p',
+        null,
+        app.subtitle
+    ),
+    app.subtitle && React.createElement(
+        'p',
+        null,
+        ' Subtitle: ',
+        app.subtitle
+    ),
+    React.createElement(
+        'p',
+        null,
+        app.options.length > 0 ? 'Here are your options' : 'No options available'
+    ),
+    React.createElement(
+        'ul',
+        null,
+        React.createElement(
+            'li',
+            null,
+            'List item 1'
+        ),
+        React.createElement(
+            'li',
+            null,
+            'List item 2'
+        ),
+        React.createElement(
+            'li',
+            null,
+            'List item 3'
+        )
+    )
+);
+
+var count = 0;
+var addOne = function addOne() {
+    count++;
+    renderCounterApp();
+};
+var minusOne = function minusOne() {
+    count--;
+    renderCounterApp();
+};
+var reset = function reset() {
+    count = 0;
+    renderCounterApp();
+};
+
+var appRoot = document.getElementById('app');
+
+var renderCounterApp = function renderCounterApp() {
+    var templateTwo = React.createElement(
+        'div',
+        null,
+        React.createElement(
+            'h1',
+            null,
+            'Count : ',
+            count
+        ),
+        React.createElement(
+            'button',
+            { onClick: addOne },
+            '+1'
+        ),
+        React.createElement(
+            'button',
+            { onClick: minusOne },
+            '-1'
+        ),
+        React.createElement(
+            'button',
+            { onClick: reset },
+            'reset'
+        )
+    );
+
+    ReactDOM.render(templateTwo, appRoot);
+};
+
+renderCounterApp();
