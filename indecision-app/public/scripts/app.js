@@ -5,7 +5,7 @@ console.log('app.js is running');
 var app = {
     title: 'Indecision App',
     subtitle: 'Put your life in the hands of a computer',
-    options: ['One', 'Two']
+    options: []
 };
 
 var onFormSubmit = function onFormSubmit(e) {
@@ -17,20 +17,17 @@ var onFormSubmit = function onFormSubmit(e) {
         app.options.push(option);
         e.target.elements.option.value = '';
     }
-    renderApp();
+    render();
 };
 
-var removeAll = function removeAll() {
+var onRemoveAll = function onRemoveAll() {
     app.options = [];
-    renderApp();
+    render();
 };
-
-// create removeAll button above list
-// Onclick wipe the array and rerender
 
 var appRoot = document.getElementById('app');
 
-var renderApp = function renderApp() {
+var render = function render() {
     var template = React.createElement(
         'div',
         null,
@@ -56,22 +53,20 @@ var renderApp = function renderApp() {
         ),
         React.createElement(
             'button',
-            { onClick: removeAll },
+            { onClick: onRemoveAll },
             'Remove All'
         ),
         React.createElement(
             'ul',
             null,
-            React.createElement(
-                'li',
-                null,
-                'List item 1'
-            ),
-            React.createElement(
-                'li',
-                null,
-                'List item 2'
-            )
+            app.options.map(function (option) {
+                return React.createElement(
+                    'li',
+                    { key: option },
+                    ' ',
+                    option
+                );
+            })
         ),
         React.createElement(
             'form',
@@ -88,8 +83,4 @@ var renderApp = function renderApp() {
     ReactDOM.render(template, appRoot);
 };
 
-renderApp();
-
-// create a new render function that renders the new jsx
-// call it right away
-// call it after options array added in
+render();
