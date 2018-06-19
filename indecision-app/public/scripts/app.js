@@ -20,6 +20,11 @@ var onFormSubmit = function onFormSubmit(e) {
     renderApp();
 };
 
+var removeAll = function removeAll() {
+    app.options = [];
+    renderApp();
+};
+
 // create removeAll button above list
 // Onclick wipe the array and rerender
 
@@ -48,6 +53,11 @@ var renderApp = function renderApp() {
             'p',
             null,
             app.options.length > 0 ? 'Here are your options' : 'No options available'
+        ),
+        React.createElement(
+            'button',
+            { onClick: removeAll },
+            'Remove All'
         ),
         React.createElement(
             'ul',
