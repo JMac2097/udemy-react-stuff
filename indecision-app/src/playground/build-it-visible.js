@@ -1,23 +1,23 @@
 let visible = false;
 
-const buttonClicked = () => {
+const clicked = () => {
     visible = !visible;
     render();
 };
 
-const appRoot = document.getElementById('app');
+const template = document.getElementById('app');
 
 const render = () => {
 
     const template = (
         <div>
-            <h3>Text Toggle</h3>
-            <button onClick={buttonClicked}>{visible ? 'Hide Text' : 'Show Text'}</button>
-            {visible && <p>{'Text that has been hidden'}</p>}
+            <p>test</p>
+            <button onClick={clicked}>{visible ? 'Hide text' : 'Show text'}</button>
+            {visible && <p>{'the hidden text'}</p>}
         </div>
     );
 
-    ReactDOM.render(template,appRoot);
+    ReactDOM.render(template, app);
 };
 
 render();
